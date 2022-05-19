@@ -1,5 +1,8 @@
 //IT21257568_Panangala P.A.D.S.S
 
+//Admin header file
+//Admin base class
+
 class Admin{
 
 protected : 
@@ -17,6 +20,7 @@ public :
               
 };
 
+//SupportServiceAdmin derived class
 class SupportServiceAdmin : public Admin{
 
 private :
@@ -30,6 +34,8 @@ public :
             ~SupportServiceAdmin();
 };
 
+//SystemAdmin derived class
+
 class SystemAdmin : public Admin{
 
 private :
@@ -41,6 +47,8 @@ public :
             void displayDetails();
             ~SystemAdmin();
 };
+
+//GlobalEventManager derived class
 
 class GlobalEventManager : public Admin{
 
@@ -54,5 +62,182 @@ public :
             void manageGlobalEvents(int gmCode, GlobalEvent *ge);
             ~GlobalEventManager();
 };
+
+//main programme
+
+#include <iostream>
+#include "Admins.h"
+#include <cstring>
+using namespace std;
+
+int main()
+{
+  cout <<endl;
+  cout << "=======================================" <<    endl; 
+  cout << endl;
+  
+  //Support service admin object creation
+  
+  SupportServiceAdmin* ss1 = new         SupportServiceAdmin("Sunil","Perera","AD001","Sunil123@gmail.com","0784569855",001);
+  ss1 -> display();
+  ss1 -> displayDetails(); 
+
+  cout << endl;
+  cout << "=======================================" <<   endl;
+  cout << endl;
+
+  //system admin object creation
+  
+  SystemAdmin* sa1 = new         SystemAdmin("Amal","Anjana","AD002","Amal456@gmail.com","0784586955",001);
+  sa1 -> display();
+  sa1 -> displayDetails(); //Display system admin details
+
+  cout << endl;
+  cout << "=======================================" <<   endl;
+  cout << endl;
+
+  //Global event manager object creation
+  
+  GlobalEventManager* gm1 = new GlobalEventManager("kamal", "Randiv", "AD003", "kamal1@gmail.com", "0774586965", 001);
+  gm1 -> display();
+  gm1 -> displayDetails(); //Display global manager details
+
+  cout << endl;
+  cout << "=======================================" <<   endl;
+  cout << endl;
+
+  delete ss1;
+  delete sa1;
+  delete gm1;
+
+  return 0;
+}
+
+//Function implementations
+
+//Admin class functions implementation
+Admin :: Admin(const char fName[], const char lName[],const char adID[], const char aEmail[] ,const char aContact[])
+{
+  strcpy(adminFirstName,fName);
+  strcpy(adminLastName,lName);
+  strcpy(adminID,adID);
+  strcpy(adminEmail,aEmail);
+  strcpy(adminContact,aContact);
+}
+
+void Admin :: display()
+{
+  cout << "Admin class called" << endl;
+  cout << endl;
+}
+
+void Admin :: displayDetails()
+{
+  cout << "Admin details" << endl;
+  cout << "Admin ID : " << adminID << endl;
+  cout << "Admin name : " << adminFirstName << "" << adminLastName << endl;
+  cout << "Email : " << adminEmail << endl;
+  cout << "Contact : " << adminContact << endl;
+  cout << endl;
+}
+
+//SupportServiceAdmin class functions implementation
+SupportServiceAdmin :: SupportServiceAdmin(const char fName[], const char lName[], const char adID[], const char aEmail[] ,const char aContact[],int sCode) : Admin( fName, lName, adID,  aEmail , aContact)
+{
+  strcpy(adminFirstName,fName);
+  strcpy(adminLastName,lName);
+  strcpy(adminID,adID);
+  strcpy(adminEmail,aEmail);
+  strcpy(adminContact,aContact);
+  supportAdminCode = sCode;
+}
+
+void SupportServiceAdmin :: display()
+{
+  cout << "Support service admin class called" << endl;
+  cout << endl;
+}
+
+void SupportServiceAdmin :: displayDetails()
+{
+  cout << "Support service admin details" << endl;
+   cout << "Admin ID : " << adminID << endl;
+  cout << "Admin name : " << adminFirstName << "" << adminLastName << endl;
+  cout << "Email : " << adminEmail << endl;
+  cout << "Contact : " << adminContact << endl;
+  cout << "Support service admin code : " << supportAdminCode <<endl; 
+  cout << endl;
+}
+
+
+SupportServiceAdmin :: ~SupportServiceAdmin()
+{
+  cout << "Support service details deleted" << endl;
+}
+
+//SystemAdmin functions implementation
+SystemAdmin :: SystemAdmin(const char fName[], const char lName[], const char adID[], const char aEmail[], const char aContact[], int sAdCode) : Admin( fName, lName, adID,  aEmail , aContact) 
+{
+  strcpy(adminFirstName,fName);
+  strcpy(adminLastName,lName);
+  strcpy(adminID,adID);
+  strcpy(adminEmail,aEmail);
+  strcpy(adminContact,aContact);
+  systemAdCode = sAdCode;
+}
+
+void SystemAdmin :: display()
+{
+  cout << "System admin class called" << endl;
+  cout << endl;
+}
+
+void SystemAdmin :: displayDetails()
+{
+  cout << "System admin details" << endl;
+   cout << "Admin ID : " << adminID << endl;
+  cout << "Admin name : " << adminFirstName << "" << adminLastName << endl;
+  cout << "Email : " << adminEmail << endl;
+  cout << "Contact : " << adminContact << endl;
+  cout << "System admin code : " << systemAdCode <<endl; 
+  cout << endl;
+}
+
+SystemAdmin :: ~SystemAdmin()
+{
+  cout << "System admin details deleted" << endl;
+}
+
+
+GlobalEventManager :: GlobalEventManager(const char fName[], const char lName[], const char adID[], const char aEmail[], const char aContact[], int gmCode) : Admin( fName, lName, adID,  aEmail , aContact) 
+{
+  strcpy(adminFirstName,fName);
+  strcpy(adminLastName,lName);
+  strcpy(adminID,adID);
+  strcpy(adminEmail,aEmail);
+  strcpy(adminContact,aContact);
+  globalMCode = gmCode;
+}
+
+void GlobalEventManager :: display()
+{
+  cout << "Global event manager class called" << endl;
+  
+}
+
+void GlobalEventManager :: displayDetails()
+{
+  cout << "Global event manager details" << endl;
+   cout << "Admin ID : " << adminID << endl;
+}
+
+ GlobalEventManager :: ~GlobalEventManager()
+{
+  cout << "Global event manager details deleted" << endl;
+}
+
+
+
+
 
 

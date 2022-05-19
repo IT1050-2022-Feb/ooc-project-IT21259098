@@ -1,5 +1,34 @@
 //IT21257568_Panangala P.A.D.S.S
 
+//Issues header file
+class Issue
+{
+  private:
+               char issueID[10];
+               char comment[100];
+  public:
+               Issue(const char com[]);
+               void setIssueID(const char isID[]);
+               void displayIssueDetails();
+               ~Issue();
+};
+
+//GlobalEvents header file
+
+class GlobalEvent {
+private:
+ char gEventName[20];
+ char duration[20];
+ char location[10];
+ char gEventID[10];
+public:
+ GlobalEvent(const char GEName[], const char Duration[], 
+const char GLocation[]);
+ void setGlobalEventID(const char GID[]);
+ void displayGlobalEventDetails();
+ ~GlobalEvent();
+};
+
 //Admin header file
 //Admin base class
 

@@ -1,0 +1,423 @@
+//IT21262104_Lakshani D.M.W.S.
+
+//Reports header file
+Reports.h
+
+#include <iostream>
+#include <cstring>
+
+#define SIZE1 2
+using namespace std;
+
+//class report
+
+class Report     
+{
+  private:
+    int reportNo;
+    char reportDescription[50];
+    Customer* cs[SIZE1];
+    Event* eve[SIZE1];
+    Bill* bl[SIZE1];
+    GlobalEvent* gle[SIZE1];
+  public:
+    Report(int repNo, const char rDescript[]);
+    void addCustomerList(Customer* cs1, Customer* cs2);
+    void addEventList(Event* eve1, Event* eve2);
+    void addBillList(Bill* bl1, Bill* bl2);
+    void addGlobalEventList(GlobalEvent* gle1, GlobalEvent* gle2);
+    void displayReportDetails();
+
+    void displayCustomerList();
+    void displayEventList();
+    void displayBillList();
+    void displayGlobalEventList();
+    ~Report();
+};
+
+//class globalEvent
+
+class GlobalEvent 
+{
+  private:
+    char gEventName[20];
+    char duration[20];
+    char location[10];
+    char gEventID[10];
+  public:
+    GlobalEvent(const char GEName[], const char Duration[],
+    const char GLocation[]);
+    void setGlobalEventID(const char GID[]);
+    void displayGlobalEventDetails();
+    ~GlobalEvent();
+};
+
+//class bill
+
+class Bill 
+{
+  private: 
+    char billDescription[30];
+    char dueDate[20];
+    char billID[6];
+    Reminder* rm[SIZE1];
+  public:
+    Bill();
+    Bill(const char bDescript[], const char dueD[], int R1, int R2);
+    void setBID(const char bID[]);
+    void displayBillDetails();
+    void displayBillReminders();
+    ~Bill();
+};
+
+//class event
+
+class Event 
+{
+  private:
+    char eventName[20];
+    char eventDate[20];
+    char eventTime[20];
+    char eventID[20];
+    Reminder* RM[SIZE1];
+  public:
+    Event();
+    Event(const char eName[], const char eDate[], const char
+    eTime[], int r1, int r2);
+    void setEventID(const char eID[]);
+    void displayEventDetails();
+    void displayEventReminders();
+    ~Event();
+};
+
+//class reminder
+
+class Reminder 
+{
+  private:
+    char Frequency[20];
+    char Type[20];
+    int rNumber;
+  public:
+    Reminder(int rNo);
+    void setFrequency(const char fre[]);
+    void setType(const char type[]);
+    void displayReminderDetails();
+    void Display();
+    ~Reminder();
+};
+//------------------------------------------------------------------------------------------------------------------
+//end of the header file
+
+
+//main program
+
+#include <iostream>
+#include <cstring>
+
+#include "Reports.h"
+using namsepace std;
+
+int main()
+{
+ 
+  //Report object creation
+
+  Report* rep = new Report(555, "This is a report about global events.");
+  rep->displayReportDetails();
+  cout << endl;
+  cout << "=======================================" << endl;
+  cout << endl;
+  //global event object creation
+  GlobalEvent* ge1 = new GlobalEvent("Holi Festival", "10.00AM to 12.00PM", "Colombo");
+  ge1->setGlobalEventID("001");
+  ge1->displayGlobalEventDetails();
+  cout << endl;
+  cout << "=======================================" << endl;
+  cout << endl;
+  
+  //---------------------------------------------
+  //Bill object creation
+  
+  Bill* bill = new Bill("This is a water bill.", "2022-06-10", 001, 002);
+  bill->setBID("B005");
+  bill->displayBillDetails();
+  bill->displayBillReminders();
+  cout << endl;
+  cout << "=======================================" << endl;
+  cout << endl;
+  
+  return 0;
+}
+
+//------------------------------------------------------------------------------------------------------------------
+//function implementations
+
+//Report class functions implementation
+Report::Report(int repNo, const char rDescript[])
+{
+  reportNo = repNo;
+  strcpy(reportDescription, rDescript);
+}
+
+void Report::displayReportDetails()
+{
+  cout << "Report number : " << reportNo << endl;
+  cout << "Report description : " << reportDescription << endl;
+}
+
+void Report::addCustomerList(Customer* cs1, Customer* cs2)
+{
+  cs[0] = cs1;
+  cs[1] = cs2;
+}
+
+void Report::addEventList(Event* eve1, Event* eve2)
+{
+  eve[0] = eve1;
+  eve[1] = eve2;
+}
+
+void Report::addBillList(Bill* bl1, Bill* bl2)
+{
+  bl[0] = bl1;
+  bl[1] = bl2;
+}
+
+void Report::addGlobalEventList(GlobalEvent* gle1, GlobalEvent* gle2)
+{
+  gle[0] = gle1;
+  gle[1] = gle2;
+}
+
+Report::~Report()
+{
+  cout << "Report details deleted." << endl;
+}
+
+void Report::displayBillList()
+{
+  for (int i = 0; i < SIZE1; i++)
+  {
+    bl[i]->displayBillDetails();
+  }
+}
+
+void Report::displayEventList()
+{
+  for (int i = 0; i < SIZE1; i++)
+  {
+    eve[i]->displayEventDetails();
+  }
+}
+
+void Report::displayCustomerList()
+{
+  for (int i = 0; i < SIZE1; i++)
+  {
+    cs[i]->displayCustomerDetails();
+  }
+}
+
+void Report::displayGlobalEventList()
+{
+  for (int i = 0; i < SIZE1; i++)
+  {
+    gle[i]->displayGlobalEventDetails();
+  }
+}
+
+//------------------------------------------------------------------------------------------------------------------
+//Bill class functions implementation
+
+Bill::Bill()
+{
+  rm[0] = new Reminder(0);
+  rm[1] = new Reminder(0);
+}
+
+Bill::Bill(const char bDescript[], const char dueD[], int R1, int R2)
+{
+  strcpy(billDescription, bDescript);
+  strcpy(dueDate, dueD);
+  rm[0] = new Reminder(R1);
+  rm[1] = new Reminder(R2);
+}
+
+void Bill::displayBillReminders()
+{
+  for (int i = 0; i < SIZE1; i++)
+  {
+    rm[i]->Display();
+    cout << endl;
+  }
+}
+
+void Bill::setBID(const char bID[])
+{
+  strcpy(billID, bID);
+}
+
+void Bill::displayBillDetails()
+{
+  cout << "Bill ID : " << billID << endl;
+  cout << "Bill description : " << billDescription << endl;
+  cout << "Due date : " << dueDate << endl;
+}
+
+Bill::~Bill()
+{
+  cout << "Bill Destructor was called." << endl;
+  for (int i = 0; i < SIZE1; i++)
+  {
+    delete rm[i];
+  }
+  cout << "Bill and bill reminders deleted" << endl;
+}
+
+
+//------------------------------------------------------------------------------------------------------------------
+//Reminder class functions implementation
+
+Reminder::Reminder(int rNo)
+{
+  rNumber = rNo;
+}
+
+void Reminder::setFrequency(const char fre[])
+{
+  strcpy(Frequency, fre);
+}
+
+void Reminder::setType(const char type[])
+{
+  strcpy(Type, type);
+}
+
+void Reminder::displayReminderDetails()
+{
+  cout << "Reminder Details" << endl;
+  cout << "Frequency : " << Frequency << endl;
+  cout << "Type : " << Type << endl;
+}
+
+void Reminder::Display()
+{
+  cout << "Reminder number : " << rNumber;
+}
+
+Reminder::~Reminder()
+{
+  cout << "Reminder details deleted" << endl;
+}
+
+//------------------------------------------------------------------------------------------------------------------
+//Event class functions implementation
+
+Event::Event()
+{
+  RM[0] = new Reminder(0);
+  RM[1] = new Reminder(0);
+}
+
+Event::Event(const char eName[], const char eDate[], const char eTime[], int r1, int r2)
+{
+  strcpy(eventName, eName);
+  strcpy(eventDate, eDate);
+  strcpy(eventTime, eTime);
+  RM[0] = new Reminder(r1);
+  RM[1] = new Reminder(r2);
+}
+
+void Event::displayEventReminders()
+{
+  for (int i = 0; i < SIZE1; i++)
+  {
+    RM[i]->Display();
+    cout << endl;
+  }
+}
+
+void Event::setEventID(const char eID[])
+{
+  strcpy(eventID, eID);
+}
+
+void Event::displayEventDetails()
+{
+  cout << "Event Details" << endl;
+  cout << "Event Name : " << eventName << endl;
+  cout << "Event Date : " << eventDate << endl;
+  cout << "Event Time : " << eventTime << endl;
+  cout << "Event ID : " << eventID << endl;
+}
+
+Event::~Event()
+{
+  cout << "Event destructor deleted" << endl;
+  for (int i = 0; i < SIZE1; i++)
+  {
+    delete RM[i];
+  }
+  cout << "Event and Event reminder details deleted" << endl;
+}
+
+//------------------------------------------------------------------------------------------------------------------
+//Customer class functions implementation
+
+Customer::Customer(const char CFName[], const char CLName[], const char Email[], const char Contact[], const char Country[])
+{
+  strcpy(customerFName, CFName);
+  strcpy(customerLName, CLName);
+  strcpy(customerEmail, Email);
+  strcpy(contactnumber, Contact);
+  strcpy(country, Country);
+}
+
+void Customer::setCoustemerID(const char CID[])
+{
+  strcpy(customerID, CID);
+}
+
+void Customer::displayCustomerDetails()
+{
+  cout << "Customer Name:" << customerFName << " " << customerLName << endl;
+  cout << "Customer ID:" << customerID << endl;
+  cout << "Customer Email:" << customerEmail << endl;
+  cout << "Customer Contact Number:" << contactnumber << endl;
+  cout << "Customer Country:" << country << endl;
+}
+
+Customer::~Customer()
+{
+  cout << "Customer details deleted" << endl;
+}
+
+//------------------------------------------------------------------------------------------------------------------
+//Global event class functions implementation
+
+GlobalEvent::GlobalEvent(const char GEName[], const char Duration[], const char GLocation[]) 
+{
+  strcpy(gEventName, GEName);
+  strcpy(duration, Duration);
+  strcpy(location, GLocation);
+}
+
+void GlobalEvent::setGlobalEventID(const char GID[]) 
+{
+  strcpy(gEventID, GID);
+}
+
+void GlobalEvent::displayGlobalEventDetails() 
+{
+  cout << "Global Event details " << endl << endl;
+  cout << "Event ID :" << gEventID << endl;
+  cout << "Event Name :" << gEventName << endl;
+  cout << "Duration :" << duration << endl;
+  cout << "Location :" << location << endl;
+}
+
+GlobalEvent::~GlobalEvent() 
+{
+  cout << "Global event details deleted" << endl;
+}

@@ -135,6 +135,6 @@ int main() {
 
   delete fb1; //deleting feedback details
     
-  
+  return 0;
 }
 

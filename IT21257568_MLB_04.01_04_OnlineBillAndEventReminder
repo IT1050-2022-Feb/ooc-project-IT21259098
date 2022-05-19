@@ -1,6 +1,12 @@
 //IT21257568_Panangala P.A.D.S.S
 
-//Issues header file
+//Issue header file
+
+#include <iostream>
+#include <cstring>
+#define SIZE1 2
+using namespace std;
+
 class Issue
 {
   private:
@@ -13,8 +19,12 @@ class Issue
                ~Issue();
 };
 
-//GlobalEvents header file
+//GlobalEvent header file
 
+#include <iostream>
+#include <cstring>
+#define SIZE1 2
+using namespace std;
 class GlobalEvent {
 private:
  char gEventName[20];
@@ -29,8 +39,15 @@ const char GLocation[]);
  ~GlobalEvent();
 };
 
-//Admin header file
+//Admins header file
 //Admin base class
+
+#include <iostream>
+#include "Issue.h"
+#include "GlobalEvent.h"
+#include <cstring>
+#define SIZE1 2
+using namespace std;
 
 class Admin{
 
@@ -250,8 +267,7 @@ GlobalEventManager :: GlobalEventManager(const char fName[], const char lName[],
 
 void GlobalEventManager :: display()
 {
-  cout << "Global event manager class called" << endl;
-  
+  cout << "Global event manager class called" << endl;  
 }
 
 void GlobalEventManager :: displayDetails()

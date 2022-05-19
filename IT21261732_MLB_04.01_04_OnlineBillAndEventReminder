@@ -1,0 +1,198 @@
+//IT21261732_Perera W.A.S.K
+
+//Customer class and issue class header implimentation
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Feedback
+{
+  private :
+         char feedbackID[10];
+         char fdComment[30];
+         int rating;
+
+
+
+  public :
+         Feedback(const char fdcom[],int Rate);
+         void setFeedbackID(const char fdID[]);
+         void displayFeedbackDetails();
+         ~Feedback();
+};
+
+class Issue
+{
+    private: //private class
+            char issueID[10];
+            char comment[100];
+
+
+    public: //public class
+            Issue(const char com[]);
+            void setIssueID(const char isID[]);
+            void displayIssueDetails(); 
+            ~Issue(); //destructor
+};
+
+class Customer{
+    private:
+            char customerFName[10];
+            char customerLName[10];
+            char customerID[10];
+            char customerEmail[30];
+            char contactnumber[20];
+            char country[20];
+
+
+
+    public:
+             Customer(const char CFName[],const char CLName[],const char 
+                    Email[],const char Contact[],const char Country[]);
+             void setCoustemerID(const char CID[]);
+             void displayCustomerDetails();
+             void addFeedback(const char CID[], Feedback *f);
+             void addIssue(const char CID[], Issue *i);
+             ~Customer();
+};
+
+
+#include "customer.h"
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+
+//customer class functions implementation
+
+Customer ::Customer(const char CFName[],const char CLName[],const char Email[],const char Contact[],const char Country[])
+{
+     strcpy(customerFName,CFName);
+     strcpy(customerLName,CLName);
+     strcpy(customerEmail,Email);
+     strcpy(contactnumber,Contact);
+     strcpy(country,Country);
+}
+
+void Customer::setCoustemerID(const char CID[])
+{
+     strcpy(customerID,CID);
+}
+
+void Customer::displayCustomerDetails()
+{
+     cout<<"Customer Name:"<<customerFName<<" "<<customerLName<<endl;
+     cout<<"Customer ID:"<<customerID<<endl;
+     cout<<"Customer Email:"<<customerEmail<<endl;
+     cout<<"Customer Contact Number:"<<contactnumber<<endl;
+     cout<<"Customer Country:"<<country<<endl;
+}
+
+Customer::~Customer()
+{
+    cout<<"Customer details deleted" << endl;
+}
+
+//issue class functions implementation
+
+Issue::Issue(const char com[])
+{
+   strcpy(comment,com);
+}
+
+void Issue::setIssueID(const char isID[])
+{
+    strcpy(issueID,isID);
+}
+
+void Issue::displayIssueDetails()
+{
+    cout<<"Issue id:"<<issueID<<endl;
+    cout<<"Issue comment:"<<comment<<endl;
+}
+
+Issue::~Issue()
+{
+    cout<<"Issue details deleted "<< endl;
+}
+
+
+//Feedback class functions implementation
+
+Feedback::Feedback(const char fdcom[],int Rate)
+{
+    strcpy(fdComment,fdcom);
+    rating=Rate;
+}
+
+void Feedback::setFeedbackID(const char fdID[])
+{
+    strcpy(feedbackID,fdID);
+}
+
+void Feedback::displayFeedbackDetails()
+{
+    cout<<"Feedback details"<<endl<<endl;
+    cout<<"Feedback Id :"<<feedbackID<<endl;
+    cout<<"Comment :"<<fdComment<<endl;
+    cout<<"Rating :"<<rating<<endl;
+}
+
+Feedback::~Feedback()
+{
+    cout<<"Feedback details deleted"<<endl;
+}
+
+
+//main program
+
+
+int main()
+{
+    //customer object creation
+Customer* cus1= new Customer("Amal","Mendis","amal@123gmail.com","0715422386","Sri Lanka");
+cus1 -> setCoustemerID("C001");
+cus1 -> displayCustomerDetails(); cout <<endl;
+cout << "=======================================" << endl;
+cout << endl; 
+  
+  //issue object creation
+Issue* issue1= new Issue("System is not responding.");
+issue1 -> setIssueID("I001");
+issue1 -> displayIssueDetails(); cout << endl;
+cout << "=======================================" << endl;
+cout << endl;
+
+
+//feedback object creation
+Feedback* fb1=new Feedback("Very user friendly system :)",5);
+fb1 ->setFeedbackID("fd001");
+fb1 ->displayFeedbackDetails(); cout << endl;
+cout << "=======================================" << endl;
+cout << endl;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

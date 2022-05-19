@@ -1,0 +1,144 @@
+//IT21258626 Munasinghe J R 
+
+//EventReminder Header File
+#include<iostream>
+#include<cstring>
+#define SIZE1 2
+using namespace std;
+
+class Reminder {
+private:
+    char Frequency[20];
+    char Type[20];
+    int rNumber;
+public:
+    Reminder(int rNo);
+    void setFrequency(const char fre[]);
+    void setType(const char type[]);
+    void displayReminderDetails();
+    void Display();
+    ~Reminder();
+};
+
+class Event {
+private:
+    char eventName[20];
+    char eventDate[20];
+    char eventTime[20];
+    char eventID[20];
+    Reminder* RM[SIZE1];
+public:
+    Event();
+    Event(const char eName[], const char eDate[], const char
+    eTime[], int r1, int r2);
+    void setEventID(const char eID[]);
+    void displayEventDetails();
+    void displayEventReminders();
+    ~Event();
+};
+
+
+#include"EventReminder.h"
+#include<iostream>
+#include<cstring>
+#define SIZE1 2
+using namespace std;
+
+int main() {
+
+//Event object creation
+Event* ev = new Event("Holy", "2022-08-01", "15:30", 003, 004);
+ev->setEventID("545");
+ev->displayEventDetails();
+ev->displayEventReminders();
+cout << endl;
+cout << "=======================================" << endl;
+cout << endl;
+
+  return 0;
+
+}
+
+//Event class functions implementation
+Event::Event()
+{
+    RM[0] = new Reminder(0);
+    RM[1] = new Reminder(0);
+}
+
+Event::Event(const char eName[], const char eDate[], const char
+eTime[], int r1, int r2)
+{
+    strcpy(eventName, eName);
+    strcpy(eventDate, eDate);
+    strcpy(eventTime, eTime);
+    RM[0] = new Reminder(r1);
+    RM[1] = new Reminder(r2);
+}
+
+void Event::displayEventReminders()
+{
+   for (int i = 0; i < SIZE1; i++)
+    {
+        RM[i]->Display();
+        cout << endl;
+    }
+}
+
+void Event::setEventID(const char eID[])
+{
+  strcpy(eventID, eID);
+}
+
+void Event::displayEventDetails()
+{
+    cout << "Event Details" << endl;
+    cout << "Event Name : " << eventName << endl;
+    cout << "Event Date : " << eventDate << endl;
+    cout << "Event Time : " << eventTime << endl;
+    cout << "Event ID : " << eventID << endl;
+}
+
+Event::~Event()
+{
+    cout << "Event destructor deleted" << endl;
+    for (int i = 0; i < SIZE1; i++)
+      {
+          delete RM[i];
+      }
+  cout << "Event and Event reminder details deleted" << endl;
+}
+
+//Reminder class functions implementation
+
+Reminder::Reminder(int rNo)
+  {
+    rNumber = rNo;
+  }
+  
+void Reminder::setFrequency(const char fre[])
+  {
+    strcpy(Frequency, fre);
+  }
+  
+void Reminder::setType(const char type[])
+  {
+    strcpy(Type, type);
+  }
+  
+void Reminder::displayReminderDetails()
+  {
+    cout << "Reminder Details" << endl;
+    cout << "Frequency : " << Frequency << endl;
+    cout << "Type : " << Type << endl;
+  }
+  
+void Reminder::Display()
+  {
+    cout << "Reminder number : " << rNumber;
+  }
+  
+Reminder::~Reminder()
+  {
+    cout << "Reminder details deleted" << endl;
+  }

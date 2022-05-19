@@ -1,5 +1,7 @@
 //IT21259098_K.H.T Dilshan
 
+//-------------------------------------------------------------Global Event--------------------------------------------------------------------------------
+
 //Global Event class header file
 
 #include <iostream>
@@ -21,4 +23,118 @@ public :
 
 };
 
-//
+
+//Global Event main programme
+
+
+#include <iostream>
+#include <cstring>
+#include "GlobalEve.h"
+using namespace std;
+
+//Funtion implementation
+
+GlobalEvent:: GlobalEvent (const char GEName[],const char Duration[],const char GLocation[]){
+  strcpy(gEventName,GEName);
+  strcpy(duration,Duration);
+  strcpy(location,GLocation);
+  
+}
+void GlobalEvent::setGlobalEventID(const char GID[]){
+  strcpy(gEventID,GID);
+  
+  }
+
+void GlobalEvent::displayGlobalEventDetails(){
+  cout<<"Global Event details "<<endl<<endl;
+  cout<<"Event ID :"<<gEventID<<endl;
+  cout<<"Event Name :"<<gEventName<<endl;
+  cout<<"Duration :"<<duration<<endl;
+  cout<<"Location :"<<location<<endl;
+}
+
+GlobalEvent::~GlobalEvent(){
+  cout<<"Global event details deleted"<<endl;
+}
+
+
+int main() {
+  GlobalEvent* ge1 = new GlobalEvent("Holi Festival","10.00AM to 12.00PM","Colombo");//creating dynemic object
+  ge1 -> setGlobalEventID("001");
+
+  ge1 -> displayGlobalEventDetails();//displaying global event details
+
+  
+
+  delete ge1;//deleting global event details
+
+  return 0;
+}
+
+
+
+
+//-------------------------------------------------------------Feedback-------------------------------------------------------------------------------------
+
+//Feedback class header file
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+//class creation 
+class Feedback{
+private :
+          char feedbackID[10]; 
+          char fdComment[30];
+          int rating;
+
+public :
+        Feedback(const char fdcom[],int Rate);
+        void setFeedbackID(const char fdID[]); 
+        void displayFeedbackDetails();
+        ~Feedback();
+
+};
+
+
+//Feedback main program
+
+#include <iostream>
+#include <cstring>
+#include "Feedback.h"
+using namespace std;
+
+//Funtion implementation
+
+Feedback::Feedback(const char fdcom[],int Rate){
+  strcpy(fdComment,fdcom);
+  rating=Rate;
+}
+
+void Feedback::setFeedbackID(const char fdID[]){
+  strcpy(feedbackID,fdID);
+}
+
+void Feedback::displayFeedbackDetails(){
+  cout<<"Feedback details"<<endl<<endl;
+  cout<<"Feedback Id :"<<feedbackID<<endl;
+  cout<<"Comment :"<<fdComment<<endl;
+  cout<<"Rating :"<<rating<<endl;
+}
+
+
+Feedback::~Feedback(){
+  cout<<"Feedback details deleted"<<endl;
+}
+
+int main() { 
+  Feedback* fb1=new Feedback("Very user friendly system :)",5); //creating dynemic object
+  fb1 ->setFeedbackID("fd001");
+  fb1 ->displayFeedbackDetails(); //displaying feedback details
+
+  delete fb1; //deleting feedback details
+    
+  
+}
+

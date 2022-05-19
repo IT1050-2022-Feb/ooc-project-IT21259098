@@ -1,0 +1,58 @@
+//IT21257568_Panangala P.A.D.S.S
+
+class Admin{
+
+protected : 
+              char adminFirstName[10];
+              char adminLastName[10];
+              char adminID[10];
+              char adminEmail[30];
+              char adminContact[20];
+              
+
+public :      
+              Admin(const char fName[] ,const char lName[],const char adID[],const char aEmail[] ,const char aContact[]);
+              void display();
+              void displayDetails();
+              
+};
+
+class SupportServiceAdmin : public Admin{
+
+private :
+            int supportAdminCode;
+
+public :    
+            SupportServiceAdmin(const char fName[], const char lName[],const char adID[], const char aEmail[] ,const char aContact[],int sCode);
+            void display();
+            void displayDetails();
+            void manageIssues(int sCode, Issue *i);
+            ~SupportServiceAdmin();
+};
+
+class SystemAdmin : public Admin{
+
+private :
+            int systemAdCode;
+
+public :    
+            SystemAdmin(const char fName[], const char lName[], const char adID[], const char aEmail[], const char aContact[], int sAdCode);
+            void display();
+            void displayDetails();
+            ~SystemAdmin();
+};
+
+class GlobalEventManager : public Admin{
+
+private :
+            int globalMCode;
+
+public :    
+            GlobalEventManager(const char fName[], const char lName[], const char adID[], const char aEmail[], const char aContact[], int gmCode);
+            void display();
+            void displayDetails();
+            void manageGlobalEvents(int gmCode, GlobalEvent *ge);
+            ~GlobalEventManager();
+};
+
+
